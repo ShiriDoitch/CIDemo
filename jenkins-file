@@ -5,10 +5,13 @@ pipeline {
         // הגדרת משתני סביבה לכל ה-Pipeline
         APP_ENV = "staging"
     }
+    options{
+        timeout(time:1, unit: 'SECONDS')
     
     stages {
         stage('Hello') {
             steps {
+                sleep time: 15, unit:'SECONDS'
                 // תיקון: שימוש בסוגריים מסולסלים עבור משתנה
                 echo "build number: ${env.BUILD_NUMBER}"
                 
