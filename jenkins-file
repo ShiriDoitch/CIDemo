@@ -1,14 +1,21 @@
 pipeline {
     agent any
-    environment (
-        APP_ENV="staging"
-)
+    
+    environment {
+        // הגדרת משתני סביבה לכל ה-Pipeline
+        APP_ENV = "staging"
+    }
+    
     stages {
         stage('Hello') {
             steps {
-                echo "build number: $(env.BUILD_NUMBER)"
+                // תיקון: שימוש בסוגריים מסולסלים עבור משתנה
+                echo "build number: ${env.BUILD_NUMBER}"
+                
                 echo 'Hello World'
-                echo "${APP_ENV}"
+                
+                // הדפסת משתנה הסביבה שהגדרנו למעלה
+                echo "The environment is: ${APP_ENV}"
             }
         }
 
