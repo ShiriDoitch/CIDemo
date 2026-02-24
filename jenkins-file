@@ -9,6 +9,17 @@ pipeline {
         timeout(time:1, unit: 'SECONDS')
     }
     stages {
+         stage('connect to github'){
+        steps{
+            withCredentials([
+    		  usernamePassword(credentialsId: 'my_security_github', usernameVariable: 'USER', passwordVariable: 'PASS'),
+    		]) {
+    		  bat '''
+    			echo  Deploying as %USER% %PASS%
+    		  '''
+    		}
+        }
+        }
         stage('Hello') {
             steps {
                 sleep time: 15, unit:'SECONDS'
