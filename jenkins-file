@@ -1,10 +1,14 @@
 pipeline {
     agent any
-
+    environment (
+        APP_ENV="staging"
+)
     stages {
         stage('Hello') {
             steps {
+                echo "build number: $(env.BUILD_NUMBER)"
                 echo 'Hello World'
+                echo "${APP_ENV}"
             }
         }
 
